@@ -1,0 +1,38 @@
+### Problem Overview
+
+The task revolves around implementing a simplified version of Shamir's Secret Sharing algorithm, which allows a secret (like a key or password) to be divided into parts, giving each participant a share of the secret. The secret can be reconstructed only when a sufficient number of shares (or points) are combined. 
+
+### Key Concepts
+
+1. **Polynomial Representation**:
+   - The secret is represented as a polynomial of degree \( m \). To reconstruct this polynomial, at least \( m + 1 \) points (roots) are required. In this case, the number of roots needed is specified by \( k \).
+
+2. **Points and Bases**:
+   - Each point is provided in a specific format, where the x-coordinate is derived from the index, and the y-coordinate is encoded in a certain base. The y-coordinate needs to be decoded into a decimal (base 10) integer.
+
+3. **Lagrange Interpolation**:
+   - This mathematical technique is used to reconstruct the polynomial from the selected points. Specifically, it allows us to calculate the value of the polynomial at any given point, including at \( x = 0 \) to find the constant term, which represents the secret.
+
+### Steps in the Code
+
+1. **Input Handling**:
+   - The code reads input from a JSON file that contains the number of points, the required points for reconstruction, and the encoded values.
+
+2. **Decoding Values**:
+   - Each encoded y-coordinate is converted from its respective base to a decimal integer, allowing for proper polynomial construction.
+
+3. **Selecting Points**:
+   - A subset of the decoded points is selected based on the required number \( k \).
+
+4. **Lagrange Interpolation Function**:
+   - A function is defined to compute the value of the polynomial at a specified x-coordinate using the Lagrange interpolation formula. This formula considers the contributions of all selected points to compute the polynomial value.
+
+5. **Calculating the Secret**:
+   - The code uses the interpolation function to evaluate the polynomial at \( x = 0 \), which yields the constant term (the secret).
+
+6. **Output**:
+   - Finally, the computed secret (constant term) is printed to the console.
+
+### Summary
+
+The code effectively implements a mechanism to decode polynomial points, reconstruct the polynomial using Lagrange interpolation, and extract the secret from those points. This process is crucial in applications of cryptography where secure sharing of information is needed.
